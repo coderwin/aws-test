@@ -3,14 +3,14 @@ package com.example.awstestback.web;
 import com.example.awstestback.service.MemberServiceImpl;
 import com.example.awstestback.util.Result;
 import com.example.awstestback.web.dto.RequestSignUpDTO;
+import com.example.awstestback.web.dto.ResponseMemberInfoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RequestMapping(value = "/members")
 @RestController
@@ -31,6 +31,19 @@ public class MemberController {
 
         return ResponseEntity.status(HttpStatus.OK).body(body);
 
+    }
+
+    @GetMapping
+    public ResponseEntity<Result<List<ResponseMemberInfoDTO>>> selectAllWithNicknameAndImageUrl() {
+
+        List<ResponseMemberInfoDTO> responseMemberInfoDTOList = memberServiceImpl.selectAllWithNicknameAndImageUrl();
+        Result<List<ResponseMemberInfoDTO>> body = Result.success(
+                responseMemberInfoDTOList,
+                HttpStatus.OK.value(),
+                HttpStatus.OK.name()
+        );
+
+        return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
 

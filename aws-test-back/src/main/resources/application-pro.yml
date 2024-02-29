@@ -5,6 +5,13 @@ spring:
   application:
     name: aws-test-back
 
+  # profiles 설정
+  # TODO : 다른 방법 알아보기
+#  profiles:
+#    include:
+#    - aws
+#    - credentials
+
   # embedded ??
   h2:
     console:
@@ -45,3 +52,22 @@ logging:
         sql: debug
         type:
           descriptor.sql: trace # 2??
+
+# aws
+cloud:
+  aws:
+    s3:
+      bucket: ${s3.bucket}
+      upload:
+        profile:
+          image-url: ${s3.upload.profile.image-url}
+          key: ${s3.upload.profile.key}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+    # IAM
+    credentials:
+      access-key: ${s3.iam.access-key}
+      secret-key: ${s3.iam.secret-key}
