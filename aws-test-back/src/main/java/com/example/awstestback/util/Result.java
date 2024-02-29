@@ -19,6 +19,7 @@ public class Result<T> {
     }
 
     // TODO : front에서 data가 unll인지 undefined 인지 확인 필요
+    //        -- null 이다.
     public static Result<Void> success() {
 
         Result<Void> result = Result.<Void>builder()
@@ -26,6 +27,18 @@ public class Result<T> {
                 .build();
 
         return result;
+    }
+
+    public static <T> Result<T> success(T data, int code, String message) {
+
+        Result<T> result = Result.<T>builder()
+                .data(data)
+                .code(code)
+                .message(message)
+                .build();
+
+        return result;
+
     }
 
 

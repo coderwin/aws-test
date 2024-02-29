@@ -8,6 +8,7 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.example.awstestback.domain.Member;
 import com.example.awstestback.repository.MemberRepository;
 import com.example.awstestback.web.dto.RequestSignUpDTO;
+import com.example.awstestback.web.dto.ResponseMemberInfoDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -95,5 +99,16 @@ public class MemberServiceImpl {
         // 저장하기
         memberRepository.save(newMember);
 
+    }
+
+    public List<ResponseMemberInfoDTO> selectAllWithNicknameAndImageUrl() {
+
+        List<Member> memberList = memberRepository.findAll();
+
+        return memberList.stream()
+                .map(m -> {
+                    return ResponseMemberInfoDTO.create(m);
+                })
+                .collect(toList());
     }
 }
