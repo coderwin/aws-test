@@ -2,6 +2,7 @@ import MainPage from './page/MainPage.js'
 import LoginPage from './page/LoginPage.js'
 import SingupPage from './page/SignupPage.js'
 import Header from './component/Header.js'
+import MemberInfoPage from './page/MemberInfoPage.js'
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './common/app.css'
 
@@ -26,6 +27,8 @@ function App() {
 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SingupPage />} />
+
+        <Route path='/members/info' element={<MemberInfoPage />} />
 
       </Routes>
     </div>

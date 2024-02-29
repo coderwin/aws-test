@@ -67,7 +67,7 @@ function Signup() {
     // 회원가입 성공
     const {code} = response.data;
 
-    if(code === 300) {
+    if(code === 200) {
       navigation("/login");
     }
   }
