@@ -29,6 +29,11 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// *********** s3 연동 시작 ************
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	// *********** s3 연동 끝 ************
+
 }
 
 tasks.named('bootBuildImage') {

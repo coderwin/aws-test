@@ -1,0 +1,13 @@
+
+cloud:
+  aws:
+    s3:
+      bucket: ${s3.bucket}
+      upload:
+        profile:
+          image-url: ${s3.upload.profile.image-url}
+          key: ${s3.upload.profile.key}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
